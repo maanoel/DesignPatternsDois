@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace DesignPatternsDois
 {
@@ -6,6 +7,15 @@ namespace DesignPatternsDois
   {
     static void Main(string[] args)
     {
+
+      IDbConnection conexao = new ConnectionFactory().ObterConexao();
+
+      IDbCommand comando = conexao.CreateCommand();
+      comando.CommandText = "select * from tabela";
+
+
+
+
       Console.WriteLine("Hello World!");
     } 
   }
