@@ -6,15 +6,13 @@ using System.Text;
 
 namespace DesignPatternsDois
 {
-  public class ConnectionFactory
+  public static class ConnectionFactory
   {
-    public IDbConnection ObterConexao() 
+    public static IDbConnection ObterConexao() 
     {
       IDbConnection conexao = new SqlConnection();
       conexao.ConnectionString = "User Id=root;Password=;Server=localhost;Database=meuBanco";
-      IDbConnection conexao = new SqlConnection();
-      conexao.ConnectionString = "User Id=root;Password=;Server=localhost;Database=meuBanco";
-      conexao.Open();
+
       conexao.Open();
 
       return conexao;

@@ -8,7 +8,7 @@ namespace DesignPatternsDois
     static void Main(string[] args)
     {
 
-      IDbConnection conexao = new ConnectionFactory().ObterConexao();
+      IDbConnection conexao =  ConnectionFactory.ObterConexao();
 
       IDbCommand comando = conexao.CreateCommand();
       comando.CommandText = "select * from tabela";
