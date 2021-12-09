@@ -7,6 +7,6 @@ namespace DesignPatternsDois
     static void Main(string[] args)
     {
       Console.WriteLine("Hello World!");
-    }
+    } 
   }
 }
