@@ -1,4 +1,5 @@
 ﻿using DesignPatternsDois.Capitulo2;
+using DesignPatternsDois.Capitulo3;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,6 +30,29 @@ namespace DesignPatternsDois
 
       Piano piano = new Piano();
       piano.Toca(musica);
-    } 
+
+      //Memento pattern
+      Historico historico = new Historico();
+      Contrato contrato = new Contrato(DateTime.Now, "Vitor", TipoContrato.Novo);
+
+      historico.Adiciona(contrato.SalvaEstado());
+
+      Console.WriteLine(contrato.Tipo);
+
+      contrato.Avancar();
+
+      historico.Adiciona(contrato.SalvaEstado());
+
+      contrato.Avancar();
+
+      historico.Adiciona(contrato.SalvaEstado());
+
+      Console.WriteLine(contrato.Tipo);
+
+      Console.WriteLine(historico.Pega(0).Contrato.Tipo);
+      Console.WriteLine(historico.Pega(1).Contrato.Tipo);
+      Console.WriteLine(historico.Pega(2).Contrato.Tipo);
+
+    }
   }
 }
