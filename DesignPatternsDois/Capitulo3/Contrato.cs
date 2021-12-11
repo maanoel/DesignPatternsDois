@@ -29,5 +29,11 @@ namespace DesignPatternsDois.Capitulo3
     public Estado SalvaEstado() {
       return new Estado(new Contrato(Data, Cliente, Tipo));
     }
+
+    public void Restaura(Estado estado) {
+      Data = estado.Contrato.Data;
+      Cliente = estado.Contrato.Cliente;
+      Tipo = estado.Contrato.Tipo;
+    }
   }
 }
