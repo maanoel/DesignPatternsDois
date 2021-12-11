@@ -32,6 +32,12 @@ namespace DesignPatternsDois
       piano.Toca(musica);
 
       //Memento pattern
+      //Uma observação sobre esse padrão..
+      //O momento dependendo do contexto, pode levar uso extremo da memória, dependendo 
+      //do tipo de objeto que está se querendo guardar o momento do estado.
+      //Para resolver esse problema e diminuir o uso de memória
+      //Podemos salvar apenas as propriedades que iremos usar após salvar o estado.
+
       Historico historico = new Historico();
       Contrato contrato = new Contrato(DateTime.Now, "Vitor", TipoContrato.Novo);
 
