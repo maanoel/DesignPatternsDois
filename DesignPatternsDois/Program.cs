@@ -1,8 +1,10 @@
 ﻿using DesignPatternsDois.Capitulo2;
 using DesignPatternsDois.Capitulo3;
+using DesignPatternsDois.capitulo4;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq.Expressions;
 
 namespace DesignPatternsDois
 {
@@ -54,11 +56,25 @@ namespace DesignPatternsDois
       historico.Adiciona(contrato.SalvaEstado());
 
       Console.WriteLine(contrato.Tipo);
-
       Console.WriteLine(historico.Pega(0).Contrato.Tipo);
       Console.WriteLine(historico.Pega(1).Contrato.Tipo);
       Console.WriteLine(historico.Pega(2).Contrato.Tipo);
 
+      //INTERPRETER é utilizado em uma árvore de expressoes matemáticas E DSL
+      IExpressao direita = new Soma(new Soma(new Numero(1), new Numero(100)), new Subtracao(new Numero(1), new Numero(100)));
+      IExpressao esquerda = new Subtracao(new Numero(1), new Numero(10));
+      IExpressao soma = new Soma(esquerda, direita);
+
+      Console.WriteLine(soma.Avalia());
+
+      //Existe uma API PRONTA, EXPRESSION para representar expressões complexas
+      //INTERPRETER no C# abaixo.
+      Expression somaExpression = Expression.Add(Expression.Constant(1), Expression.Constant(100));
+
+      Func<int> funcao = Expression.Lambda<Func<int>>(somaExpression).Compile();
+
+      Console.WriteLine(funcao());
+      //
     }
   }
 }
