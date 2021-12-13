@@ -1,4 +1,6 @@
-﻿namespace DesignPatternsDois.capitulo4
+﻿using DesignPatternsDois.Capitulo5;
+
+namespace DesignPatternsDois.capitulo4
 {
   public class Numero : IExpressao
   {
@@ -12,6 +14,11 @@
     public int Avalia()
     {
       return this.Valor;
+    }
+
+    public void Aceita(Impressora impressora)
+    {
+      impressora.ImprimeNumero(this);
     }
   }
 }

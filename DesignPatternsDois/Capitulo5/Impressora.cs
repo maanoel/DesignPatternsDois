@@ -10,7 +10,6 @@ namespace DesignPatternsDois.Capitulo5
     public void ImprimeSoma(Soma soma)
     {
       Console.Write("(");
-      //esquerda
       Console.Write("+");
       //Direita
       Console.Write(")");

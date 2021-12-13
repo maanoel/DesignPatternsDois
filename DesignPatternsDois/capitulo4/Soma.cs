@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignPatternsDois.Capitulo5;
+using System;
 
 namespace DesignPatternsDois.capitulo4
 {
@@ -19,6 +20,11 @@ namespace DesignPatternsDois.capitulo4
       int valorDireita = Direita.Avalia();
 
       return valorEsquerda + valorDireita;
+    }
+
+    public void Aceita(Impressora impressora)
+    {
+      impressora.ImprimeSoma(this);
     }
   }
 }
