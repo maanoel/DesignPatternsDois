@@ -2,18 +2,18 @@
 {
   public class Subtracao: IExpressao
   {
-    private IExpressao esquerda;
-    private IExpressao direita;
+    public IExpressao Esquerda { get; private set; }
+    public IExpressao Direita { get; private set; }
 
     public Subtracao(IExpressao esquerda, IExpressao direita) {
-      this.esquerda = esquerda;
-      this.direita = direita;
+      this.Esquerda = esquerda;
+      this.Direita = direita;
     }
 
     public int Avalia()
     {
-      int valorEsquerda = esquerda.Avalia();
-      int valorDireita = direita.Avalia();
+      int valorEsquerda = Esquerda.Avalia();
+      int valorDireita = Direita.Avalia();
 
       return valorEsquerda - valorDireita;
     }
