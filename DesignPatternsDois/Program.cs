@@ -23,7 +23,14 @@ namespace DesignPatternsDois
       ///
       IMensagem mensagemEmail = new MensagemCliente("Vitor brito: Aqui está sua recompensa de 100000000");
       IMensagem mensagemSMS = new MensagemPorAdministrativa("Vitor brito: Aqui está sua recompensa de 100000000");
+      
+      IEnviador enviadorEmail = new EnviaPorEmail();
+      IEnviador enviadorSMS = new EnviaPorSMS();
+
+      mensagemEmail.Enviador = enviadorEmail;
       mensagemEmail.Envia();
+
+      mensagemSMS.Enviador = enviadorSMS;
       mensagemSMS.Envia();
     }
 

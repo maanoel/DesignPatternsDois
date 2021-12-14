@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesignPatternsDois.Capitulo6
 {
@@ -13,11 +11,11 @@ namespace DesignPatternsDois.Capitulo6
       this.nome = nome;
     }
 
-    public IEnviador Enviador { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public IEnviador Enviador { get; set; }
 
     public void Envia()
     {
-     
+      this.Enviador.Envia(this);
     }
 
     public string Formata()
