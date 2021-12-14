@@ -1,6 +1,7 @@
 ﻿using DesignPatternsDois.Capitulo2;
 using DesignPatternsDois.Capitulo3;
 using DesignPatternsDois.capitulo4;
+using DesignPatternsDois.Capitulo5;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,27 +13,35 @@ namespace DesignPatternsDois
   {
     static void Main(string[] args)
     {
-      //ConnectionString
-      IDbConnection conexao =  ConnectionFactory.ObterConexao();
-      IDbCommand comando = conexao.CreateCommand();
-      comando.CommandText = "select * from tabela";
-      Console.WriteLine("Hello World!");
+      IExpressao soma = Interpreter();
+      Memento();
+      Flyweight();
+      ConnectionString();
 
-      //Flyweight Pattern
-      NotasMusicais notas = new NotasMusicais();
-      IList<INota> musica = new List<INota>() {
-        notas.Pega("do"),
-        notas.Pega("re"),
-        notas.Pega("mi"),
-        notas.Pega("fa"),
-        notas.Pega("sol"),
-        notas.Pega("la"),
-        notas.Pega("si"),
-      };
+      Impressora impressora = new Impressora();
+      soma.Aceita(impressora);
+    }
 
-      Piano piano = new Piano();
-      piano.Toca(musica);
+    private static IExpressao Interpreter()
+    {
+      //INTERPRETER é utilizado em uma árvore de expressoes matemáticas E DSL
+      IExpressao direita = new Soma(new Soma(new Numero(1), new Numero(100)), new Subtracao(new Numero(1), new Numero(100)));
+      IExpressao esquerda = new Subtracao(new Numero(1), new Numero(10));
+      IExpressao soma = new Soma(esquerda, direita);
 
+      Console.WriteLine(soma.Avalia());
+
+      //Existe uma API PRONTA, EXPRESSION para representar expressões complexas
+      //INTERPRETER no C# abaixo.
+      Expression somaExpression = Expression.Add(Expression.Constant(1), Expression.Constant(100));
+      Func<int> funcao = Expression.Lambda<Func<int>>(somaExpression).Compile();
+      Console.WriteLine(funcao());
+      //
+      return soma;
+    }
+
+    private static void Memento()
+    {
       //Memento pattern
       //Uma observação sobre esse padrão..
       //O momento dependendo do contexto, pode levar uso extremo da memória, dependendo 
@@ -59,22 +68,33 @@ namespace DesignPatternsDois
       Console.WriteLine(historico.Pega(0).Contrato.Tipo);
       Console.WriteLine(historico.Pega(1).Contrato.Tipo);
       Console.WriteLine(historico.Pega(2).Contrato.Tipo);
+    }
 
-      //INTERPRETER é utilizado em uma árvore de expressoes matemáticas E DSL
-      IExpressao direita = new Soma(new Soma(new Numero(1), new Numero(100)), new Subtracao(new Numero(1), new Numero(100)));
-      IExpressao esquerda = new Subtracao(new Numero(1), new Numero(10));
-      IExpressao soma = new Soma(esquerda, direita);
+    private static void Flyweight()
+    {
+      //Flyweight Pattern
+      NotasMusicais notas = new NotasMusicais();
+      IList<INota> musica = new List<INota>() {
+        notas.Pega("do"),
+        notas.Pega("re"),
+        notas.Pega("mi"),
+        notas.Pega("fa"),
+        notas.Pega("sol"),
+        notas.Pega("la"),
+        notas.Pega("si"),
+      };
 
-      Console.WriteLine(soma.Avalia());
+      Piano piano = new Piano();
+      piano.Toca(musica);
+    }
 
-      //Existe uma API PRONTA, EXPRESSION para representar expressões complexas
-      //INTERPRETER no C# abaixo.
-      Expression somaExpression = Expression.Add(Expression.Constant(1), Expression.Constant(100));
-
-      Func<int> funcao = Expression.Lambda<Func<int>>(somaExpression).Compile();
-
-      Console.WriteLine(funcao());
-      //
+    private static void ConnectionString()
+    {
+      //ConnectionString
+      IDbConnection conexao = ConnectionFactory.ObterConexao();
+      IDbCommand comando = conexao.CreateCommand();
+      comando.CommandText = "select * from tabela";
+      Console.WriteLine("Hello World!");
     }
   }
 }

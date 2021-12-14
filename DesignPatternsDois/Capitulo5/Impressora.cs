@@ -10,17 +10,18 @@ namespace DesignPatternsDois.Capitulo5
     public void ImprimeSoma(Soma soma)
     {
       Console.Write("(");
+      soma.Esquerda.Aceita(this);
       Console.Write("+");
-      //Direita
+      soma.Direita.Aceita(this);
       Console.Write(")");
     }
 
     public void ImprimeSubtracao(Subtracao subtracao)
     {
       Console.Write("(");
-      //esquerda
+      subtracao.Esquerda.Aceita(this);
       Console.Write("-");
-      //Direita
+      subtracao.Direita.Aceita(this);
       Console.Write(")");
     }
 
