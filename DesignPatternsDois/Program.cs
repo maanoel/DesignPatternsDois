@@ -2,6 +2,7 @@
 using DesignPatternsDois.Capitulo3;
 using DesignPatternsDois.capitulo4;
 using DesignPatternsDois.Capitulo5;
+using DesignPatternsDois.Capitulo6;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,8 +19,13 @@ namespace DesignPatternsDois
       Flyweight();
       ConnectionString();
       Visitor(soma);
-    }
 
+      ///
+      IMensagem mensagemEmail = new MensagemCliente("Vitor brito: Aqui está sua recompensa de 100000000");
+      IMensagem mensagemSMS = new MensagemPorAdministrativa("Vitor brito: Aqui está sua recompensa de 100000000");
+      mensagemEmail.Envia();
+      mensagemSMS.Envia();
+    }
 
     private static IExpressao Interpreter()
     {
