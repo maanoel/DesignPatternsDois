@@ -19,20 +19,9 @@ namespace DesignPatternsDois
       Flyweight();
       ConnectionString();
       Visitor(soma);
-
-      ///
-      IMensagem mensagemEmail = new MensagemCliente("Vitor brito: Aqui está sua recompensa de 100000000");
-      IMensagem mensagemSMS = new MensagemPorAdministrativa("Vitor brito: Aqui está sua recompensa de 100000000");
-      
-      IEnviador enviadorEmail = new EnviaPorEmail();
-      IEnviador enviadorSMS = new EnviaPorSMS();
-
-      mensagemEmail.Enviador = enviadorEmail;
-      mensagemEmail.Envia();
-
-      mensagemSMS.Enviador = enviadorSMS;
-      mensagemSMS.Envia();
+      Bridge();
     }
+
 
     private static IExpressao Interpreter()
     {
@@ -114,5 +103,26 @@ namespace DesignPatternsDois
       ImpressoraVisitor impressora = new ImpressoraVisitor();
       soma.Aceita(impressora);
     }
+
+    private static void Bridge()
+    {
+      ///Bridge, utilizando a composição de classes, estou fazendo 
+      ///uma ponte entre as interfaces
+      ///Esse padrão é usado toda vez que temos uma hierarquia de classes que 
+      ///tenham uma ou mais responsabilidades,
+
+      IMensagem mensagemEmail = new MensagemCliente("Vitor brito: Aqui está sua recompensa de 100000000");
+      IMensagem mensagemSMS = new MensagemPorAdministrativa("Vitor brito: Aqui está sua recompensa de 100000000");
+
+      IEnviador enviadorEmail = new EnviaPorEmail();
+      IEnviador enviadorSMS = new EnviaPorSMS();
+
+      mensagemEmail.Enviador = enviadorEmail;
+      mensagemEmail.Envia();
+
+      mensagemSMS.Enviador = enviadorSMS;
+      mensagemSMS.Envia();
+    }
+
   }
 }
