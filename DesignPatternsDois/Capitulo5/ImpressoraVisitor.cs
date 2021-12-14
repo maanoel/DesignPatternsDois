@@ -1,11 +1,9 @@
 ﻿using DesignPatternsDois.capitulo4;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesignPatternsDois.Capitulo5
 {
-  public class Impressora
+  public class ImpressoraVisitor: IVisitor
   {
     public void ImprimeSoma(Soma soma)
     {

@@ -16,7 +16,7 @@ namespace DesignPatternsDois.capitulo4
       return this.Valor;
     }
 
-    public void Aceita(Impressora impressora)
+    public void Aceita(IVisitor impressora)
     {
       impressora.ImprimeNumero(this);
     }

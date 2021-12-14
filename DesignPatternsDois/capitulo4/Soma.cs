@@ -22,7 +22,7 @@ namespace DesignPatternsDois.capitulo4
       return valorEsquerda + valorDireita;
     }
 
-    public void Aceita(Impressora impressora)
+    public void Aceita(IVisitor impressora)
     {
       impressora.ImprimeSoma(this);
     }

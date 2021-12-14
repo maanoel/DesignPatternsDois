@@ -17,10 +17,9 @@ namespace DesignPatternsDois
       Memento();
       Flyweight();
       ConnectionString();
-
-      Impressora impressora = new Impressora();
-      soma.Aceita(impressora);
+      Visitor(soma);
     }
+
 
     private static IExpressao Interpreter()
     {
@@ -95,6 +94,12 @@ namespace DesignPatternsDois
       IDbCommand comando = conexao.CreateCommand();
       comando.CommandText = "select * from tabela";
       Console.WriteLine("Hello World!");
+    }
+
+    private static void Visitor(IExpressao soma)
+    {
+      ImpressoraVisitor impressora = new ImpressoraVisitor();
+      soma.Aceita(impressora);
     }
   }
 }
