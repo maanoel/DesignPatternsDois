@@ -4,7 +4,7 @@ namespace DesignPatternsDois.Capitulo9
 {
   public class EmpresaFacade
   {
-    public Cliente Buscacliente(string cpf)
+    public Cliente BuscaCliente(string cpf)
     {
       return new ClienteDAO().BuscaPorCpf(cpf);
     }

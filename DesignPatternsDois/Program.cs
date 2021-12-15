@@ -25,7 +25,6 @@ namespace DesignPatternsDois
       Bridge();
       Command();
       Adapter();
-
       Facade();
 
     }
@@ -34,10 +33,8 @@ namespace DesignPatternsDois
     {
       //
       string cpf = "1234";
-      EmpresaFacade facade = new EmpresaFacade();
-      Cliente cliente = facade.Buscacliente(cpf);
-
-
+      EmpresaFacade facade = new EmpresaFacadaSingleton().Instancia;
+      Cliente cliente = facade.BuscaCliente(cpf);
       //
     }
 
