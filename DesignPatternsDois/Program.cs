@@ -25,24 +25,7 @@ namespace DesignPatternsDois
       Visitor(soma);
       Bridge();
       Command();
-
-      //
-
-      Cliente cliente = new Cliente();
-
-      cliente.Nome = "Vitor";
-      cliente.Endereco = "Rua vergueiro";
-      cliente.DataNascimento = DateTime.Now;
-
-      XmlSerializer serializer = new XmlSerializer(cliente.GetType());
-      StringWriter writer = new StringWriter();
-
-      serializer.Serialize(writer, cliente);
-
-      string xml = writer.ToString();
-
-      Console.WriteLine(xml);
-
+      Adapter();
 
     }
 
@@ -161,5 +144,23 @@ namespace DesignPatternsDois
 
       fila.Processa();
     }
+
+    private static void Adapter()
+    {
+
+      //Utilizamos o adapter sempre que quisermos
+      //adaptar um código de uma lib ou de um sistema legado
+
+      Cliente cliente = new Cliente();
+
+      cliente.Nome = "Vitor";
+      cliente.Endereco = "Rua vergueiro";
+      cliente.DataNascimento = DateTime.Now;
+
+      string xml = new GeradorDeXml().GeraXml(cliente);
+
+      Console.WriteLine(xml);
+    }
+
   }
 }
