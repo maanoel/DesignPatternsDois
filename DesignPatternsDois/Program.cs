@@ -5,12 +5,11 @@ using DesignPatternsDois.Capitulo5;
 using DesignPatternsDois.Capitulo6;
 using DesignPatternsDois.Capitulo7;
 using DesignPatternsDois.Capitulo8;
+using DesignPatternsDois.Capitulo9;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq.Expressions;
-using System.Xml.Serialization;
 
 namespace DesignPatternsDois
 {
@@ -27,6 +26,19 @@ namespace DesignPatternsDois
       Command();
       Adapter();
 
+      Facade();
+
+    }
+
+    private static void Facade()
+    {
+      //
+      string cpf = "1234";
+      EmpresaFacade facade = new EmpresaFacade();
+      Cliente cliente = facade.Buscacliente(cpf);
+
+
+      //
     }
 
     private static IExpressao Interpreter()
