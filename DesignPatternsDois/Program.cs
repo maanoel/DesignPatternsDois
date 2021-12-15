@@ -22,7 +22,7 @@ namespace DesignPatternsDois
       Visitor(soma);
       Bridge();
 
-      //
+      //COMMAND
       FilaDeTrabalho fila = new FilaDeTrabalho();
       Pedido pedido1 = new Pedido("nadine", 2300.00);
       Pedido pedido2 = new Pedido("vitor", 2200.00);
@@ -30,6 +30,8 @@ namespace DesignPatternsDois
       fila.Adiciona(new PagaPedido(pedido1));
       fila.Adiciona(new PagaPedido(pedido2));
       fila.Adiciona(new FinalizaPedido(pedido1));
+
+      fila.Processa();
     }
 
 
