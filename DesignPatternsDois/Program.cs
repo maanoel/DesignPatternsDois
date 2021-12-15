@@ -4,10 +4,13 @@ using DesignPatternsDois.capitulo4;
 using DesignPatternsDois.Capitulo5;
 using DesignPatternsDois.Capitulo6;
 using DesignPatternsDois.Capitulo7;
+using DesignPatternsDois.Capitulo8;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq.Expressions;
+using System.Xml.Serialization;
 
 namespace DesignPatternsDois
 {
@@ -21,19 +24,27 @@ namespace DesignPatternsDois
       ConnectionString();
       Visitor(soma);
       Bridge();
+      Command();
 
-      //COMMAND
-      FilaDeTrabalho fila = new FilaDeTrabalho();
-      Pedido pedido1 = new Pedido("nadine", 2300.00);
-      Pedido pedido2 = new Pedido("vitor", 2200.00);
+      //
 
-      fila.Adiciona(new PagaPedido(pedido1));
-      fila.Adiciona(new PagaPedido(pedido2));
-      fila.Adiciona(new FinalizaPedido(pedido1));
+      Cliente cliente = new Cliente();
 
-      fila.Processa();
+      cliente.Nome = "Vitor";
+      cliente.Endereco = "Rua vergueiro";
+      cliente.DataNascimento = DateTime.Now;
+
+      XmlSerializer serializer = new XmlSerializer(cliente.GetType());
+      StringWriter writer = new StringWriter();
+
+      serializer.Serialize(writer, cliente);
+
+      string xml = writer.ToString();
+
+      Console.WriteLine(xml);
+
+
     }
-
 
     private static IExpressao Interpreter()
     {
@@ -136,5 +147,19 @@ namespace DesignPatternsDois
       mensagemSMS.Envia();
     }
 
+
+    private static void Command()
+    {
+      //COMMAND
+      FilaDeTrabalho fila = new FilaDeTrabalho();
+      Pedido pedido1 = new Pedido("nadine", 2300.00);
+      Pedido pedido2 = new Pedido("vitor", 2200.00);
+
+      fila.Adiciona(new PagaPedido(pedido1));
+      fila.Adiciona(new PagaPedido(pedido2));
+      fila.Adiciona(new FinalizaPedido(pedido1));
+
+      fila.Processa();
+    }
   }
 }
