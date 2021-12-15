@@ -2,7 +2,7 @@
 
 namespace DesignPatternsDois.Capitulo7
 {
-  enum Status
+  public enum Status
   {
     Novo,
     Processado,

@@ -3,6 +3,7 @@ using DesignPatternsDois.Capitulo3;
 using DesignPatternsDois.capitulo4;
 using DesignPatternsDois.Capitulo5;
 using DesignPatternsDois.Capitulo6;
+using DesignPatternsDois.Capitulo7;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,15 @@ namespace DesignPatternsDois
       ConnectionString();
       Visitor(soma);
       Bridge();
+
+      //
+      FilaDeTrabalho fila = new FilaDeTrabalho();
+      Pedido pedido1 = new Pedido("nadine", 2300.00);
+      Pedido pedido2 = new Pedido("vitor", 2200.00);
+
+      fila.Adiciona(new PagaPedido(pedido1));
+      fila.Adiciona(new PagaPedido(pedido2));
+      fila.Adiciona(new FinalizaPedido(pedido1));
     }
 
 
