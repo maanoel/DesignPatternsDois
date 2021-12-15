@@ -31,7 +31,7 @@ namespace DesignPatternsDois
 
     private static void Facade()
     {
-      //
+      //variáveis globais não são boas, então os singleton é um anti pattern
       string cpf = "1234";
       EmpresaFacade facade = new EmpresaFacadaSingleton().Instancia;
       Cliente cliente = facade.BuscaCliente(cpf);
